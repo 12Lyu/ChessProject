@@ -1,0 +1,148 @@
+:root {
+    --main-bg: #FBC02D;
+    --main-bg-darker: #c99d50;
+    --main-bg-back-face: #fa7304;
+    --main-size: 50px;
+    --main-depth: 10px;
+}
+  
+.stage {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.chess-board {
+    transform-style: preserve-3d;
+    transform: rotateX(60deg);
+}
+
+.chess-row {
+    transform-style: preserve-3d;
+}
+
+.coin {
+    transform-style: preserve-3d;
+    transform-origin: 50% 50%;
+    height: var(--main-size);
+    width: var(--main-size);
+    position: relative;
+    transform: translateZ(calc(var(--main-depth) / 2 + 1px));
+}
+
+.rotated-state {
+    transform: translateZ(calc(var(--main-depth) / 2 + 1px)) rotateX(180deg);
+}
+
+.rotated {
+    animation: rot 0.5s;
+}
+
+.back-rotated {
+    animation: rot 0.5s reverse;
+}
+
+.coin-face, .coin-back-face {
+    position: absolute;
+    z-index: 50;
+    margin-left: 1px;
+    margin-top: -1px;
+    background-color: var(--main-bg);
+    width: calc(var(--main-size) - 1px);
+    height: calc(var(--main-size) - 1px);
+    border-radius: var(--main-size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    user-select: none;
+    background: url("../images/coin-face.png") no-repeat;
+    background-color: var(--main-bg);
+    background-size: cover;
+    background-position: center;
+    transform: translateZ(calc(var(--main-depth) / 2));
+}
+
+.coin-back-face {
+    background: url("../images/coin-back-face.png") no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--main-bg-back-face);
+    transform: rotateX(180deg) translateZ(calc(var(--main-depth) / 2));
+}
+
+.coin-tale {
+    transform-style: preserve-3d;
+    z-index: 10;
+    top: 0;
+    margin-left: calc(var(--main-size) / 4 + var(--main-size) * .25881 / 2);
+    position: absolute;
+    width: calc(var(--main-size) * .25881);
+    height: var(--main-size);
+}
+
+.coin-tale::before, .coin-tale::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: var(--main-depth);
+    background: var(--main-bg-darker);
+    transform-origin: 50% 0;
+    border: solid 1px black;
+    transform: translateZ(calc(var(--main-depth) / -2)) rotateX(90deg);
+}
+
+.coin-tale::after {
+    bottom: 0;
+    transform-origin: 50% 100%;
+    transform: translateZ(calc(var(--main-depth) / -2)) rotateX(-90deg);
+}
+
+.coin-top, .coin-bottom {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--main-bg);
+    transform: translateZ(calc(var(--main-depth) / 2));
+}
+
+.coin-bottom {
+    transform: translateZ(calc(var(--main-depth) / 2));
+}
+
+.rotate-1 {
+    transform: rotateZ(30deg);
+}
+  
+.rotate-2 {
+    transform: rotateZ(60deg);
+}
+  
+.rotate-3 {
+    transform: rotateZ(90deg);
+}
+  
+.rotate-4 {
+    transform: rotateZ(120deg);
+}
+  
+.rotate-5 {
+    transform: rotateZ(150deg);
+}
+
+@keyframes rot {
+    0% {
+        transform: translateZ(calc(var(--main-depth) / 2 + 1px)) rotateX(0);
+    }
+    50% {
+        transform: translateZ(calc(var(--main-size) / 2)) rotateX(90deg);
+    }
+
+    100% {
+        transform: rotateX(180deg) translateZ(calc(var(--main-depth) / -2 - 1px));
+    }
+}

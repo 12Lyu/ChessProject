@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.chess-row {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    transform-style: preserve-3d;
+}
+
+.chess-row:nth-of-type(8)::after {
+    content: "";
+    position: absolute;
+    text-align: justify;
+    display: flex;
+    background-color: rgb(83, 82, 82);
+    width: 100%;
+    height: 20px;
+    transform: rotateX(-90deg);
+    transform-origin: 0 0;
+    top: 100%;
+}
+
+.chess-row:nth-of-type(1)::before {
+    content: "";
+    position: absolute;
+    text-align: justify;
+    background-color: rgb(83, 82, 82);
+    width: 100%;
+    height: 20px;
+    transform: rotateX(-90deg);
+    transform-origin: 0 0;
+    top: 0;
+}
+
+.chess-row:nth-of-type(1)::after {
+    content: "";
+    position: absolute;
+    text-align: justify;
+    background-color: rgb(83, 82, 82);
+    width: 100%;
+    height: 20px;
+    transform: rotateX(-90deg) rotateY(-90deg);
+    transform-origin: 0 0;
+    top: 0;
+}
+
+.chess-row:nth-of-type(8)::before {
+    content: "";
+    position: absolute;
+    text-align: justify;
+    background-color: rgb(83, 82, 82);
+    width: 100%;
+    height: 20px;
+    transform: rotateZ(90deg) rotateX(-90deg);
+    transform-origin: 100% 0;
+    top: 100%;
+}
+
+.chess-row::after {
+    content: "";
+    position: absolute;
+    color: rgb(83, 82, 82);
+    width: 100%;
+    height: 20px;
+    transform: rotateX(-80deg);
+    transform-origin: 0 0;
+}
+
+.chess-cell {
+    width: 75px;
+    height: 75px;
+    background: #6e6e6e;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+}
+
+.chess-cell:nth-of-type(2n + 1) {
+    background: rgba(185, 186, 185, 0.933);
+}
+.chess-row:nth-of-type(2n) > .chess-cell:nth-of-type(2n + 1) {
+    background: #6e6e6e;
+}
+.chess-row:nth-of-type(2n) > .chess-cell:nth-of-type(2n) {
+    background: rgba(185, 186, 185, 0.933);
+}
